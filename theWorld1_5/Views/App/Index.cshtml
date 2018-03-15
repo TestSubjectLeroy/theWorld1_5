@@ -1,0 +1,58 @@
+﻿@{ 
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The World!!! - @ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <link href="css/mine.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div id="sidebar">
+        <img src="img/Capture.jpg" alt="litle boi" class="headshot" />
+        <span id="username">John Mac</span>
+        <ul class="menu">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+    </div>
+    <div id="wrapper">
+        <div id="main1">
+            <div>
+                <button id="sidebarToggle">Togle menu</button>
+            </div>
+            <h2> The world </h2>
+            <div>
+                <p>what the hell is going on today</p>
+                <form action="">
+                    <div>
+                        <label>Date</label>
+                        <input name="" value="" />
+                    </div>
+
+                    <div>
+                        <label>Date</label>
+                        <input name="" value="" />
+                    </div>
+
+                    <div>
+                        <input type="submit" name="name" value="Add" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="footer">
+            &copy;2018 the Man Ltd.
+        </div>
+    </div>
+
+    <script src="vendor/jquery/jquery.js"></script>
+    <script src="myJs/mySite.js"></script>
+</body>
+</html>
