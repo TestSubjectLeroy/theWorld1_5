@@ -2,16 +2,26 @@
 @{
     ViewBag.Tilte = "Contact Page";
 
- }
+}
+@section scripts {
+    <script src="~/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/vendor/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
 <h2>Contact me </h2>
-<form action="/" method="post">
-    <label asp-for = "Name">Name</label>
-    <input asp-for = "Name"/>
-    <label asp-for = "Email">Email</label>
-    <input asp-for = "Email" type="email"/>
-    <label asp-for = "Message">Message</label>
-    <textarea cols=" 40" rows="4" asp-for = "Message"></textarea>
+<form method="post">
+    <span asp-validation-summary="ModelOnly"></span>
+    <label asp-for="Name">Name</label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+    <label asp-for="Email">Email</label>
+    <input asp-for="Email" type="email" />
+    <span asp-validation-for="Email"></span>
+
+    <label asp-for="Message">Message</label>
+    <textarea cols=" 40" rows="4" asp-for="Message"></textarea>
+    <span asp-validation-for="Message"></span>
+
     <div>
-        <input type="submit"  value="Send Message" />
+        <input type="submit" value="Send Message" />
     </div>
-    </form>
+</form>

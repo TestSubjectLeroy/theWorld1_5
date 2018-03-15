@@ -63,7 +63,15 @@ var deps = {
     },
     "underscore": {
         "*/": ""
+    },
+    "jquery-validation": {
+        "dist/*": ""
+    },
+      "jquery-validation-unobtrusive": {
+        "dist/*": ""
     }
+
+
 
 };
 
