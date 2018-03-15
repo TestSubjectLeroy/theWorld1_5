@@ -13,5 +13,16 @@ namespace theWorld1_5.Controllers.Web
         {
             return View();
         }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        public IActionResult About()
+
+        {
+            return View();
+        }
     }
 }
