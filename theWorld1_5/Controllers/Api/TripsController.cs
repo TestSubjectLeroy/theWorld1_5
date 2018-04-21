@@ -42,19 +42,27 @@ namespace theWorld1_5.Controllers.Api
 
         //POST
         [HttpPost("")]
-        public IActionResult Post([FromBody]TripViewModel theTrip)
+        public async Task<IActionResult> Post([FromBody]TripViewModel theTrip)
         {
             if (ModelState.IsValid)
 
             {
                 //Save to Database
                 var newTrip = Mapper.Map<Trip>(theTrip);
+                _repository.AddTrip(newTrip);
 
+                if (await _repository.SaveChangesAsync())
+                {
+                    return Created($"api/trips/{theTrip.Name}", Mapper.Map<TripViewModel>(newTrip));
+                }
 
-                return Created($"api/trips/{theTrip.Name}", Mapper.Map<TripViewModel>(newTrip));
+                //else
+                //{
+                //    return BadRequest("Save changes Failed in database....");
+                //}
             }
 
-            return BadRequest(ModelState);
+            return BadRequest("failed to save the trip");
         }
 
     }
