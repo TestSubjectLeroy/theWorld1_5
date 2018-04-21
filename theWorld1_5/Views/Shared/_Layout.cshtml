@@ -7,36 +7,66 @@
 <head>
     <title>The World!!! - @ViewBag.Title</title>
     <meta charset="utf-8" />
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.yeti.min.css" rel="stylesheet" />
+    <link href="~/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/css/mine.css" rel="stylesheet" />
-
 </head>
+
+
 <body>
     <div id="sidebar">
         <img src="~/img/Capture.jpg" alt="litle boi" class="headshot" />
         <span id="username">John Mac</span>
-        <ul class="menu">
-            <li class="active"><a asp-controller ="App" asp-action="Index" >Home</a></li>
-            <li><a asp-controller ="App" asp-action="About">About</a></li>
-            <li><a asp-controller ="App" asp-action="Contact">Contact</a></li>
+        <ul class="nav">
+            <li class="active"><a asp-controller="App" asp-action="Index">Home</a></li>
+            <li><a asp-controller="App" asp-action="About">About</a></li>
+            <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
         </ul>
 
     </div>
     <div id="wrapper">
-        <div id="main1">
-            <div>
-                <button id="sidebarToggle">Togle menu</button>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav narbar-left">
+                    <li>
+                        <button id="sidebarToggle" class="btn btn-primary">
+                            <i class="fa fa-angle-left"></i>
+                        </button>
+                    </li>
+                </ul>
+                <a asp-controller="App" asp-action="index" class="navbar-brand">the World</a>
+                <ul class="nav navbar-nav narbar-right">
+                    <li>
+                        <a href="#" class="btn btn-sm btn-info">
+                            <i class="fa fa-save"></i> Save
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-sm btn-info">
+                            <i class="fa fa-print"></i>Print
+                        </a>
+                    </li>
+                </ul>
             </div>
-           @RenderBody()
+        </nav>
+        <div id="main1" class="container-fluid">
+            <div>
+               
+            </div>
+            @RenderBody()
         </div>
 
         <div id="footer">
-            &copy;2018 the Man Ltd.
+            <p class="text-primary">&copy;2018 the Man Ltd.</p> 
         </div>
     </div>
 
     <script src="~/vendor/jquery/jquery.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/myJs/mySite.js"></script>
     @RenderSection("scripts", false)
 
-    <script src="~/myJs/mySite.js"></script>
+
 </body>
 </html>

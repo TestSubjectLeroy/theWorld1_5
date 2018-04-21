@@ -1,23 +1,35 @@
-﻿@{ 
+﻿@model IEnumerable<theWorld1_5.Models.Trip>
+@{ 
     ViewBag.Title = "Home Page";
 }
 
-
-<h2> The world </h2>
+<div class= row>
+    <h2> The world </h2>
     <p>what the hell is going on today</p>
-    <form >
-        <div>
-            <label>Date</label>
-            <input name="" value="" />
-        </div>
+    <div class="col-md-6">
+        <form>
+            <div>
+                <label>Date</label>
+                <input name="" value="" />
+            </div>
 
-        <div>
-            <label>Date</label>
-            <input name="" value="" />
-        </div>
+            <div>
+                <label>Location</label>
+                <input name="" value="" />
+            </div>
 
-        <div>
-            <input type="submit" name="name" value="Add" />
-        </div>
-    </form>
+            <div>
+                <input type="submit" name="name" value="Add" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <h2>The Map</h2>
+        @foreach (var item in Model)
+        {
+           <li>@item.Name : @item.DateCreated.ToString("d")</li>
+        }
+    </div>
+
+</div>
             

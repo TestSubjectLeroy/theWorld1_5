@@ -69,6 +69,9 @@ var deps = {
     },
       "jquery-validation-unobtrusive": {
         "dist/*": ""
+    },
+    "font-awesome": {
+        "*/*": ""
     }
 
 
