@@ -1,0 +1,30 @@
+﻿@model theWorld1_5.ViewModels.LoginViewModel
+@{
+    ViewBag.Tilte = "Login";
+
+}
+@section Scripts {
+    <script src="~/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/vendor/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h3>Login</h3>
+        <form method="post">
+            <div asp-validation-summary="ModelOnly  "></div>
+            <div class="form-group">
+                <label asp-for="UserName"></label>
+                <input asp-for="UserName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
