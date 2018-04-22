@@ -20,10 +20,18 @@ namespace theWorld1_5.Models
             if (!_context.Trips.Any())
             {
                 var usTrip = new Trip()
-                {
+                {  
+            
                     DateCreated = DateTime.UtcNow,
                     Name = "Us Trip",
-                    UserName = "",
+                    UserName = "", 
+                    Comments = new List<Comment>()
+                    {
+                        new Comment() { UserName = "MikeSup", Response = "What the hhell! that trip is insane!!! lol", DateCreated = new DateTime(2015,5,5), Order = 0 },
+                        new Comment() { UserName = "MAdMaxxx", Response = "Well thats Stupid!!!", DateCreated = new DateTime(2015,5,6), Order = 1 },
+                        new Comment() { UserName = "OnePunchMan", Response = "Oh wow Im going to steal your Idea an do this trips Also...", DateCreated = new DateTime(2015,5,7), Order =2 },
+                    },
+
                     Stops = new List<Stop>()
                     {
                         new Stop() {  Name = "Atlanta, GA", Arrival = new DateTime(2014, 6, 4), Latitude = 33.748995, Longitude = -84.387982, Order = 0 },
@@ -32,13 +40,18 @@ namespace theWorld1_5.Models
                         new Stop() {  Name = "Chicago, IL", Arrival = new DateTime(2014, 7, 10), Latitude = 41.878114, Longitude = -87.629798, Order = 3 },
                         new Stop() {  Name = "Seattle, WA", Arrival = new DateTime(2014, 8, 13), Latitude = 47.606209, Longitude = -122.332071, Order = 4 },
                         new Stop() {  Name = "Atlanta, GA", Arrival = new DateTime(2014, 8, 23), Latitude = 33.748995, Longitude = -84.387982, Order = 5 },
+                    },
 
-                    }
+                
+
+
+
                 };
 
                 _context.Trips.Add(usTrip);
-
+                _context.Comments.AddRange(usTrip.Comments);
                 _context.Stops.AddRange(usTrip.Stops);
+              
 
                 var worldTrip = new Trip()
                 {
@@ -73,12 +86,21 @@ namespace theWorld1_5.Models
                         new Stop() { Order = 23, Latitude =  53.349805, Longitude =  -6.260310, Name = "Dublin, Ireland", Arrival = DateTime.Parse("Sep 9, 2014") },
                         new Stop() { Order = 24, Latitude =  47.368650, Longitude =  8.539183, Name = "Zurich, Switzerland", Arrival = DateTime.Parse("Sep 16, 2014") },
 
+                    },
+                    Comments = new List<Comment>()
+                    {
+                        new Comment() {UserName = "MikeSup", Response = "I do not aprove...", DateCreated = DateTime.UtcNow, Order = 0 },
+                        new Comment() {UserName = "MAdMaxxx", Response = "you Must Be rich..", DateCreated = DateTime.UtcNow, Order = 1 },
+                        new Comment() {UserName = "OnePunchMan", Response = "I'm going to steel this one too!!!.", DateCreated = DateTime.UtcNow , Order = 2 },
+
+
                     }
                 };
 
                 _context.Trips.Add(worldTrip);
 
                 _context.Stops.AddRange(worldTrip.Stops);
+                _context.Comments.AddRange(worldTrip.Comments);
 
 
                 await _context.SaveChangesAsync();

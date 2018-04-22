@@ -8,8 +8,8 @@ using theWorld1_5.Models;
 namespace theWorld1_5.Migrations
 {
     [DbContext(typeof(WorldContext))]
-    [Migration("20180421114732_addingCommentsDB")]
-    partial class addingCommentsDB
+    [Migration("20180421205930_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,7 @@ namespace theWorld1_5.Migrations
 
                     b.Property<int?>("TripId");
 
-                    b.Property<string>("USerName");
+                    b.Property<string>("UserName");
 
                     b.HasKey("Id");
 

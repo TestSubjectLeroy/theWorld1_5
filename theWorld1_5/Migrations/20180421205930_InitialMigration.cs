@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace theWorld1_5.Migrations
 {
-    public partial class InitialDatabase : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,6 +22,29 @@ namespace theWorld1_5.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Trips", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    Order = table.Column<int>(nullable: false),
+                    Response = table.Column<string>(nullable: true),
+                    UserName = table.Column<string>(nullable: true),
+                    TripId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_Trips_TripId",
+                        column: x => x.TripId,
+                        principalTable: "Trips",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -49,6 +72,11 @@ namespace theWorld1_5.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comments_TripId",
+                table: "Comments",
+                column: "TripId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Stops_TripId",
                 table: "Stops",
                 column: "TripId");
@@ -56,6 +84,9 @@ namespace theWorld1_5.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Comments");
+
             migrationBuilder.DropTable(
                 name: "Stops");
 

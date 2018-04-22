@@ -54,7 +54,9 @@ namespace theWorld1_5
 
             services.AddDbContext<WorldContext>();
 
-            services.AddScoped<IWorldRepository, WorldRepository>();  
+            services.AddScoped<IWorldRepository, WorldRepository>();
+
+            services.AddTransient<GeoCoordsService>();
 
             services.AddTransient<WorldContextSeedData>();
             services.AddLogging();
@@ -75,8 +77,9 @@ namespace theWorld1_5
             Mapper.Initialize(config =>
             {
                 config.CreateMap<TripViewModel, Trip>().ReverseMap();
+                config.CreateMap<StopViewModel, Stop>().ReverseMap();
+                config.CreateMap<CommentViewModel, Comment>().ReverseMap();
                 // Also works without ReverseMap() method at the end.
-
             });
 
             if (env.IsEnvironment("Development"))

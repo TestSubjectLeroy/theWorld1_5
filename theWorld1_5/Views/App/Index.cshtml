@@ -3,33 +3,12 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class= row>
-    <h2> The world </h2>
-    <p>what the hell is going on today</p>
-    <div class="col-md-6">
-        <form>
-            <div>
-                <label>Date</label>
-                <input name="" value="" />
-            </div>
 
-            <div>
-                <label>Location</label>
-                <input name="" value="" />
-            </div>
+<div class=row>
+    <div class="col-md-12">
+        <h1>   Welcome to ChainLink </h1>
+        <p>This app will allow you to plan your trips Across the world and Comment on other peoples Trips</p>
+        <a asp-controller="App" asp-action="trips" class="btn btn-lg btn-success">View My Trips</a>
 
-            <div>
-                <input type="submit" name="name" value="Add" />
-            </div>
-        </form>
     </div>
-    <div class="col-md-6">
-        <h2>The Map</h2>
-        @foreach (var item in Model)
-        {
-           <li>@item.Name : @item.DateCreated.ToString("d")</li>
-        }
-    </div>
-
 </div>
-            

@@ -14,7 +14,7 @@ namespace theWorld1_5.Models
         public string UserName { get; set; }
 
         public ICollection<Stop> Stops { get; set; }
-        public ICollection <Comment> Comments { get; set; }
+        public ICollection<Comment> Comments { get; set; }
 
 
     }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,12 @@ namespace theWorld1_5.Controllers.Api
     public class TripsController : Controller
     {
         private IWorldRepository _repository;
+        private ILogger<TripsController> _logger;
 
-        public TripsController(IWorldRepository repository)
+        public TripsController(IWorldRepository repository, ILogger<TripsController> logger)
         {
             _repository = repository;
+            _logger = logger;
         }
 
         //GET
@@ -33,8 +36,8 @@ namespace theWorld1_5.Controllers.Api
             }
             catch (Exception ex)
             {
-                //ToDO LOGGING
-
+              
+                _logger.LogError($"Failed to get all trips: {ex }");
                 return BadRequest("Error occured");
                
             }

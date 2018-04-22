@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -19,7 +20,7 @@ namespace theWorld1_5.Controllers.Web
         private IWorldRepository _repository;
         private ILogger<AppController> _logger;
 
-        public AppController(IMailService mailService, 
+        public AppController(IMailService mailService,
             IConfigurationRoot config,
             IWorldRepository repository,
               ILogger<AppController> logger)
@@ -32,18 +33,30 @@ namespace theWorld1_5.Controllers.Web
 
         public IActionResult Index()
         {
+            return View();
+
+        }
+
+        [Authorize]
+        public IActionResult Trips()
+        {
             try
             {
-                var data = _repository.GetAllTrips();
-                return View(data);
+                var trips = _repository.GetAllTrips();
+                return View(trips);
             }
             catch (Exception ex)
             {
-                _logger.LogError("Failed to get trips in Index page: {ex.Message} ");
+                _logger.LogError($"Failrd to get trips in page:{ex.Message}");
                 return Redirect("/error");
+                
             }
-           
+          
+
         }
+
+
+
 
         public IActionResult Contact()
         {

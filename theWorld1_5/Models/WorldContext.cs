@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -6,9 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace theWorld1_5.Models
 {
-    public class WorldContext : DbContext
+    public class WorldContext :IdentityDbContext<WorldUser>
     {
         private IConfigurationRoot _config;
 
@@ -20,8 +23,9 @@ namespace theWorld1_5.Models
     
 
         public DbSet<Trip> Trips { get; set; }
-        public DbSet<Stop> Stops { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Stop> Stops { get; set; }
+       
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

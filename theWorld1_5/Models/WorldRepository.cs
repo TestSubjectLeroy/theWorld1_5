@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,28 @@ namespace theWorld1_5.Models
 
         }
 
+        public void AddComment(string tripName, Comment newComment)
+        {
+            var trip = GetTripNyName(tripName);
+            if (trip != null)
+
+            {
+                trip.Comments.Add(newComment);
+                _context.Comments.Add(newComment);
+            }
+        }
+
+        public void AddStop(string tripName, Stop newStop)
+        {
+            var trip = GetTripNyName(tripName);
+            if (trip != null)
+
+            {
+                trip.Stops.Add(newStop);
+                _context.Stops.Add(newStop);
+            }
+        }
+
         public void AddTrip(Trip trip)
         {
             _context.Add(trip);
@@ -24,6 +47,15 @@ namespace theWorld1_5.Models
         public IEnumerable<Trip> GetAllTrips()
         {
             return _context.Trips.ToList();
+        }
+
+        public Trip GetTripNyName(string tripName)
+        {
+            return _context.Trips
+                .Include(t => t.Comments)
+                .Include(t => t.Stops)
+                .Where(t => t.Name == tripName)
+                 .FirstOrDefault();
         }
 
         public async Task<bool> SaveChangesAsync()
