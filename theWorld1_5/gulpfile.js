@@ -72,6 +72,9 @@ var deps = {
     },
     "font-awesome": {
         "*/*": ""
+    },
+    "angular": {
+        "*/": ""
     }
 
 

@@ -10,6 +10,7 @@ namespace theWorld1_5.ViewModels
     public class CommentViewModel
     {
 
+        public string UserName { get; set; }
         [Required]
         [StringLength(130,MinimumLength =2)]
         public string Response { get; set; }

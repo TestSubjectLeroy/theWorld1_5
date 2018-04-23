@@ -28,14 +28,14 @@ namespace theWorld1_5.Models
             }
         }
 
-        public void AddStop(string tripName, Stop newStop)
+        public void AddStop(string tripName, Stop newStop, string username)
         {
-            var trip = GetTripNyName(tripName);
+            var trip = GetUserTripByName(tripName, username);
             if (trip != null)
 
             {
                 trip.Stops.Add(newStop);
-                _context.Stops.Add(newStop);
+              //  _context.Stops.Add(newStop);
             }
         }
 
@@ -56,6 +56,26 @@ namespace theWorld1_5.Models
                 .Include(t => t.Stops)
                 .Where(t => t.Name == tripName)
                  .FirstOrDefault();
+        }
+
+        public IEnumerable<Trip> GetTripsByUsername(string name)
+        {
+            return _context
+                .Trips
+                 .Include(t => t.Comments)
+                .Include(t => t.Stops)
+                .Where(t => t.UserName == name)
+                .ToList();
+        }
+
+        public Trip GetUserTripByName(string tripName, string username)
+        {
+
+            return _context.Trips
+                 .Include(t => t.Comments)
+                 .Include(t => t.Stops)
+                 .Where(t => t.Name == tripName && t.UserName == username)
+                  .FirstOrDefault();
         }
 
         public async Task<bool> SaveChangesAsync()

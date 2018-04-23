@@ -7,7 +7,11 @@
     "WorldContextConnection": "Server=(localdb)\\MSSQLLocalDB;Database=TheWorldDb;Trusted_Connection=true;MultipleActiveResultSets=true;"
   },
   "Keys": {
-    "BingKey": ""
+
+    //no supose to leave API KEY EXPOSE!!!
+
+
+    "BingKey": "AjAwW1-IEdYJefjG02XEV5q-UA3brF9Kg5nu1_-ESmWbl9H-L4QMYclx8xLNEYOi"
   }
 
 }

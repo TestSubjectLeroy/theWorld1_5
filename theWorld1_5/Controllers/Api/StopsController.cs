@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,6 +13,7 @@ using theWorld1_5.ViewModels;
 
 namespace theWorld1_5.Controllers.Api
 {
+    [Authorize]
     [Route("/api/trips/{tripName}/Stops")]
     public class StopsController :Controller
     {
@@ -33,7 +35,8 @@ namespace theWorld1_5.Controllers.Api
         {
             try
             {
-                var trip = _repository.GetTripNyName(tripName);
+                var trip = _repository.GetUserTripByName(tripName, User.Identity.Name );
+
                 return Ok(Mapper.Map<IEnumerable<StopViewModel>>( trip.Stops.OrderBy(s => s.Order).ToList()));
             }
             catch (Exception ex)
@@ -42,6 +45,8 @@ namespace theWorld1_5.Controllers.Api
             }
             return BadRequest("Failed to get stops");
         }
+
+
         [HttpPost("")]
         public async Task <IActionResult> Post(string tripName,[FromBody]StopViewModel vm)
         {
@@ -65,12 +70,12 @@ namespace theWorld1_5.Controllers.Api
 
 
                         //saving to database
-                        _repository.AddStop(tripName, newStop);
+                        _repository.AddStop(tripName, newStop, User.Identity.Name);
 
                         if (await _repository.SaveChangesAsync())
                         {
 
-                            return Created($"/api/trips.{tripName}/Stop/{newStop.Name}",
+                            return Created($"/api/trips/{tripName}/Stops/{newStop.Name}",
                             Mapper.Map<StopViewModel>(newStop));
 
                         }
@@ -79,9 +84,9 @@ namespace theWorld1_5.Controllers.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError("Failed to get stops: {0}", ex);
+                _logger.LogError($"Failed to get stops: {0}", ex);
             }
-            return BadRequest("Failed to get stops");
+            return BadRequest();
         }
     }
 }
