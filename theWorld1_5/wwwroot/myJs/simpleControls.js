@@ -7,11 +7,13 @@
     function waitCursor() {
 
         return {
-            //scope: {
-            //    show:"=displayWhen"
-            //},
-            //restrict: "E",
-            templateUrl: "/views/waitCursor.html"
+            scope: {
+                show: "=displayWhen"
+            },
+            restrict: "E",
+            templateUrl:"/views/waitCursor.html"
+
+            //templateUrl: "/views/waitCursor.html"
         };
     }
 

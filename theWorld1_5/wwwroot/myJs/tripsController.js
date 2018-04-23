@@ -19,8 +19,8 @@
 
         vm.errorMessage = "";
 
-        
         vm.isBusy = true;
+
         $http.get("/api/trips")
             .then(function (response) {
                 //Success

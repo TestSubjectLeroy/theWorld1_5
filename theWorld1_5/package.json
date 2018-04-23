@@ -10,7 +10,8 @@
     "jquery-validation": "1.17.0",
     "jquery-validation-unobtrusive": "3.2.8",
     "font-awesome": "4.7.0",
-    "angular": "1.6.10"
+    "angular": "1.6.10",
+    "angular-route": "1.6.10"
 
   },
 

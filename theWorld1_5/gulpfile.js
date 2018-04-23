@@ -75,6 +75,9 @@ var deps = {
     },
     "angular": {
         "*/": ""
+    },
+    "angular-route": {
+        "*/": ""
     }
 
 
